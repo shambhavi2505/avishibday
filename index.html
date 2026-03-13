@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HAPPY BIRTHDAY AVISHIIII 💖</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+text-align:center;
+background:linear-gradient(135deg,#ffe066,#ff66c4,#66d9ff,#ff9a3c,#8affc1);
+background-size:400% 400%;
+animation:bgmove 10s ease infinite;
+overflow-x:hidden;
+color:white;
+}
+
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* START SCREEN */
+
+#startScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff66c4,#ffe066,#66d9ff);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:1000;
+}
+
+.startBtn{
+font-size:26px;
+padding:18px 40px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff4da6;
+cursor:pointer;
+}
+
+/* main content */
+
+#mainContent{
+display:none;
+position:relative;
+z-index:10;
+}
+
+h1{
+font-size:55px;
+margin-top:40px;
+text-shadow:0 0 20px rgba(255,255,255,0.8);
+}
+
+/* slideshow */
+
+.slideshow{
+width:380px;
+margin:auto;
+margin-top:20px;
+}
+
+.slideshow img{
+width:100%;
+border-radius:20px;
+border:6px solid white;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* button */
+
+button{
+padding:16px 30px;
+font-size:20px;
+border:none;
+border-radius:14px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+margin-top:30px;
+}
+
+/* letter */
+
+#letter{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#333;
+padding:30px;
+width:70%;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+z-index:500;
+}
+
+/* floating emojis */
+
+.emoji{
+position:fixed;
+bottom:-20px;
+font-size:26px;
+animation:float 6s linear infinite;
+z-index:1;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
+}
+
+/* cake */
+
+.cake{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+font-size:65px;
+cursor:pointer;
+animation:bounce 2s infinite;
+z-index:20;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateX(-50%) translateY(0);}
+50%{transform:translateX(-50%) translateY(-10px);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- START SCREEN -->
+
+<div id="startScreen">
+<h1>🎉 Birthday Surprise 🎉</h1>
+<button class="startBtn" onclick="startSite()">Tap to Start 💖</button>
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div id="mainContent">
+
+<h1>🎉 HAPPYYYY BIRTHDAYYY AVISHIIII🎉</h1>
+
+<p>Life in hostel would be boring without you 💕</p>
+
+<h2>Our Memories 📸</h2>
+
+<div class="slideshow">
+<img id="slide" src="a1.jpg">
+</div>
+
+<button onclick="openLetter()">Tap to Open Birthday Letter 💌</button>
+
+<div id="letter">
+
+<h2>💛 Dear Avishi 💛</h2>
+
+<p>
+From random gossip and debrief sessions, chatpate cravings and exam stress,
+every moment with you is a core memory!!
+</p>
+
+<p>
+I hope this year brings you happiness, success, noodles, momos and lots of cake 🎂
+</p>
+
+<p>
+Love you always 💕
+</p>
+
+<button onclick="closeLetter()">Close 💌</button>
+
+</div>
+
+<div class="cake">🎂</div>
+
+</div>
+
+<script>
+
+/* start surprise */
+
+function startSite(){
+document.getElementById("startScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}
+
+/* slideshow */
+
+let photos=[
+"a1.jpg","us1.jpg","a2.jpg","us2.jpg",
+"a3.jpg","us3.jpg","a4.jpg","us4.jpg",
+"a5.jpg","us5.jpg","a6.jpg","us6.jpg",
+"a7.jpg","us7.jpg","us8.jpg","us9.jpg"
+];
+
+let i=0;
+
+setInterval(function(){
+i=(i+1)%photos.length;
+document.getElementById("slide").src=photos[i];
+},2000);
+
+/* letter */
+
+function openLetter(){
+document.getElementById("letter").style.display="block";
+}
+
+function closeLetter(){
+document.getElementById("letter").style.display="none";
+}
+
+/* floating emojis */
+
+let emojis=["💖","✨","🎈","🥟","🍜","💛"];
+
+setInterval(function(){
+
+let emoji=document.createElement("div");
+emoji.className="emoji";
+
+emoji.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+emoji.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(emoji);
+
+setTimeout(()=>{emoji.remove();},6000);
+
+},900);
+
+</script>
+
+</body>
+</html>
