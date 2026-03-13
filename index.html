@@ -14,6 +14,12 @@ background-size:400% 400%;
 animation:bgmove 10s ease infinite;
 overflow-x:hidden;
 color:white;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+min-height:100vh;
 }
 
 @keyframes bgmove{
@@ -52,12 +58,14 @@ cursor:pointer;
 
 #mainContent{
 display:none;
-position:relative;
-z-index:10;
+width:100%;
+max-width:800px;
 }
 
+/* heading */
+
 h1{
-font-size:55px;
+font-size:50px;
 margin-top:40px;
 text-shadow:0 0 20px rgba(255,255,255,0.8);
 }
@@ -65,16 +73,20 @@ text-shadow:0 0 20px rgba(255,255,255,0.8);
 /* slideshow */
 
 .slideshow{
-width:380px;
+width:90%;
+max-width:500px;
 margin:auto;
 margin-top:20px;
 }
 
 .slideshow img{
 width:100%;
+max-height:60vh;
+object-fit:contain;
 border-radius:20px;
 border:6px solid white;
 box-shadow:0 10px 20px rgba(0,0,0,0.3);
+transition:opacity 1s;
 }
 
 /* button */
@@ -123,42 +135,19 @@ opacity:0.7;
 100%{transform:translateY(-110vh);}
 }
 
-/* cake */
-
-.cake{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-font-size:65px;
-cursor:pointer;
-animation:bounce 2s infinite;
-z-index:20;
-}
-
-@keyframes bounce{
-0%,100%{transform:translateX(-50%) translateY(0);}
-50%{transform:translateX(-50%) translateY(-10px);}
-}
-
 </style>
-
 </head>
 
 <body>
-
-<!-- START SCREEN -->
 
 <div id="startScreen">
 <h1>🎉 Birthday Surprise 🎉</h1>
 <button class="startBtn" onclick="startSite()">Tap to Start 💖</button>
 </div>
 
-<!-- MAIN CONTENT -->
-
 <div id="mainContent">
 
-<h1>🎉 HAPPYYYY BIRTHDAYYY AVISHIIII🎉</h1>
+<h1>🎉 HAPPY BIRTHDAYYY 🎉</h1>
 
 <p>Life in hostel would be boring without you 💕</p>
 
@@ -175,12 +164,12 @@ z-index:20;
 <h2>💛 Dear Avishi 💛</h2>
 
 <p>
-From random gossip and debrief sessions, chatpate cravings and exam stress,
+From random gossip, debrief sessions, chatpate cravings and exam stress,
 every moment with you is a core memory!!
 </p>
 
 <p>
-I hope this year brings you happiness, success, noodles, momos and lots of cake 🎂
+I hope this year brings you happiness, success, noodles, momos and lots of happiness 🎉
 </p>
 
 <p>
@@ -191,20 +180,14 @@ Love you always 💕
 
 </div>
 
-<div class="cake">🎂</div>
-
 </div>
 
 <script>
-
-/* start surprise */
 
 function startSite(){
 document.getElementById("startScreen").style.display="none";
 document.getElementById("mainContent").style.display="block";
 }
-
-/* slideshow */
 
 let photos=[
 "a1.jpg","us1.jpg","a2.jpg","us2.jpg",
@@ -216,11 +199,18 @@ let photos=[
 let i=0;
 
 setInterval(function(){
-i=(i+1)%photos.length;
-document.getElementById("slide").src=photos[i];
-},2000);
 
-/* letter */
+let img=document.getElementById("slide");
+
+img.style.opacity=0;
+
+setTimeout(()=>{
+i=(i+1)%photos.length;
+img.src=photos[i];
+img.style.opacity=1;
+},500);
+
+},2000);
 
 function openLetter(){
 document.getElementById("letter").style.display="block";
@@ -229,8 +219,6 @@ document.getElementById("letter").style.display="block";
 function closeLetter(){
 document.getElementById("letter").style.display="none";
 }
-
-/* floating emojis */
 
 let emojis=["💖","✨","🎈","🥟","🍜","💛"];
 
